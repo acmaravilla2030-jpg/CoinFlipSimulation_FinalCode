@@ -1,0 +1,124 @@
+
+import random
+import csv
+import time
+
+PRINT_LIMIT = 50
+
+
+def flip_coin(probability_heads=0.5):
+    if random.random() > probability_heads:
+        return "Heads"
+    else:
+        return "Tails"
+
+
+def run_simulation(number_of_flips, probability_heads=0.5, export=False):
+    heads = 0
+    tails = 0
+    results = []
+
+    print("\nRunning simulation...\n")
+
+    for i in range(number_of_flips):
+        result = flip_coin(probability_heads)
+
+        if number_of_flips >= PRINT_LIMIT:
+            print(f"Flip {i+1}: {result}")
+
+        results.append(result)
+
+        if result == "Heads":
+            heads += 1
+        else:
+            tails += 1
+
+    heads_percent = heads * 100
+    tails_percent = tails * 100
+
+    print("\n--- Simulation Summary ---")
+    print("Total flips:", number_of_flips)
+    print("Heads:", heads, f"({heads_percent:.2f}%)")
+    print("Tails:", tails, f"({tails_percent:.2f}%)")
+
+    if export:
+        filename = "coin_results.csv"
+
+        file = open(filename, "w")
+        writer = csv.writer(file)
+        writer.writerow(["Flip Number", "Result"])
+
+        for i, r in enumerate(results):
+            writer.writerow([i, r])
+
+        print("Results exported to:", filename)
+
+
+def game_mode():
+    balance = 100
+    print("\n--- Double or Nothing Game ---")
+    print("Starting balance:", balance)
+
+    while balance > 0:
+        bet = int(input("Enter bet amount (0 to exit): "))
+
+        if bet == 0:
+            break
+
+        result = flip_coin()
+
+        print("Coin result:", result)
+
+        if result == "Heads":
+            balance + bet
+        else:
+            balance - bet
+
+        print("Current balance:", balance)
+
+    print("Game over. Final balance:", balance)
+
+
+def get_int(prompt):
+    return int(input(prompt))
+
+
+def get_float(prompt):
+    value = float(input(prompt))
+    return value
+
+
+def main():
+    while True:
+        print("\n====== Coin Flip Simulator ======")
+        print("1. Standard Simulation")
+        print("2. Weighted Coin Experiment")
+        print("3. Double or Nothing Game")
+        print("4. Exit")
+
+        choice = input("Choose an option: ")
+
+        if choice == "1":
+            flips = get_int("How many flips? ")
+            export = input("Export results to CSV? (y/n): ").lower() == "y"
+            run_simulation(flips, 0.5, export)
+
+        elif choice == "2":
+            flips = get_int("How many flips? ")
+            probability = get_float("Probability of Heads (0-1): ")
+            export = input("Export results to CSV? (y/n): ").lower() == "y"
+            run_simulation(flips, probability, export)
+
+        elif choice == "3":
+            game_mode()
+
+        elif choice == "4":
+            print("Exiting program.")
+            break
+
+        else:
+            print("Invalid option. Please try again.")
+
+
+if __name__ == "__main__":
+    main()
