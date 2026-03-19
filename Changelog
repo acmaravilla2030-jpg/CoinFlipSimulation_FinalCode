@@ -1,0 +1,79 @@
+## Overview
+The Coin Flip Simulator is a Python-based utility designed to model stochastic processes through simple Bernoulli trials. It supports standard simulations, weighted probability experiments for statistical testing, and a rudimentary "Double or Nothing" betting game.
+
+## Changelog: Version 1.0.0
+1. Updated Project Documentation
+
+Feature Updates:
+	•	Simulates a single coin flip
+	•	Supports multiple coin flips with user input
+	•	Counts and displays the number of “Heads” and “Tails”
+	•	Input validation for positive integers only
+
+File/Function Structure:
+	•	flip_coin() – returns “Heads” or “Tails” randomly
+	•	run_simulation(times) – runs multiple flips and counts results
+	•	main() – handles user input and program execution
+
+New Technologies / Tools:
+	•	Python 3 – for coding the simulation
+	•	GitHub – version control and repository management
+	•	Markdown – for README file documentation
+Core Features Implementation:
+	•	flip_coin() uses random.choice(["Heads","Tails"]) for random selection
+	•	run_simulation(times) loops the coin flips and counts occurrences of heads and tails
+	•	Input validation ensures users can only enter positive integers
+
+Technologies Used & Justification:
+	•	Python: simple, readable, and easy to run locally
+	•	GitHub: tracks changes and allows version control
+	•	Markdown/README: explains project installation, usage, and features
+
+Backend–Frontend Communication:
+	•	Not applicable – the project is console-based
+
+Design Decisions / Trade-offs:
+	•	Console interface chosen for simplicity
+	•	Modular function design improves readability
+	•	Prioritized readability over advanced optimizations
+
+Ethical Considerations:
+	•	User privacy: program runs locally, does not store personal data
+	•	Accessibility: clear prompts, readable output, modular code for easy understanding
+	•	Intellectual property: all references cited, no uncredited code 
+
+
+## Changelog: Version 1.1.0
+New Features
+  • Weighted Probability Engine: Implemented flip_coin(probability_heads) allowing users to simulate biased coins (e.g., a 70% chance of heads).
+  • Data Export (CSV): Added the ability to log every individual flip result to coin_results.csv for external analysis in Excel or Python (Pandas).
+  • Simulation Modes: * Standard: Fixed 50/50 odds.
+  • Weighted: User-defined float input for bias.
+  • Game Mode: Added a "Double or Nothing" CLI mini-game with a persistent balance tracker.
+  • Console Throttling: Implemented a PRINT_LIMIT to prevent console lag when running massive simulations (e.g., 1,000,000 flips).
+Technical Updates
+  • Input Handling: Modularized user inputs with get_int() and get_float() helper functions.
+  • Formatting: Added f-string formatting for summary statistics to ensure percentages are displayed to two decimal places.
+
+
+## Program Architecture
+Core Logic Functions
+- Flip coin
+    random.random(): return a string result based on a threshold
+    run_simulation(): handles the loop, tallying, and logic for CSV writing
+    game_mode(): a stateful loop that manages a user's balance based on win/loss
+
+
+## Known Issues & "Gotchas" (The Peer Review)
+While the foundation is strong, there are a few bugs in the current code that will need to be addressed in the next version (v1.2.0):
+1.	Logic Bug in Game Mode: In game_mode(), the balance doesn't actually change!
+• Current: balance + bet / balance - bet
+• Required: balance += bet / balance -= bet (Assignments are missing).
+2.	CSV Handling: The code uses open(filename, "w") but doesn't explicitly call .close(). It’s better to use a with open(...) block to prevent memory leaks or file corruption.
+3.	Input Sensitivity: get_int and get_float will currently crash the program if a user types a letter instead of a number.
+
+
+## Future Roadmap
+• Error Handling: Implement try-except blocks for all user inputs.
+• Visualizations: Integrate matplotlib to generate a live-updating histogram of results.
+• Streaks Tracking: Add logic to calculate the longest "heads" or "tails" streak during a simulation.
