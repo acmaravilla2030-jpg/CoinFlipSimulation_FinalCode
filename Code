@@ -1,4 +1,3 @@
-
 import random
 import csv
 import time
@@ -33,8 +32,8 @@ def run_simulation(number_of_flips, probability_heads=0.5, export=False):
         else:
             tails += 1
 
-    heads_percent = heads * 100
-    tails_percent = tails * 100
+    heads_percent = (heads / number_of_flips) * 100
+    tails_percent = (tails / number_of_flips) * 100
 
     print("\n--- Simulation Summary ---")
     print("Total flips:", number_of_flips)
