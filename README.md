@@ -6,12 +6,19 @@ A Python-based utility designed to model stochastic processes through simple Ber
 
 
 ## Features
-• Standard Simulation: Quick 50/50 coin toss modeling.
-• Weighted Probability Engine: Simulate biased coins (e.g., 70% heads) to see how probability shifts over large datasets.
-• Data Export (CSV): Automatically logs individual flip results to coin_results.csv for analysis in Excel or Google Sheets.
-• Double or Nothing Mini-Game: A CLI-based betting game with a persistent balance tracker.
-• Performance Optimized: Includes a PRINT_LIMIT to prevent console lag during massive simulations (e.g., 1,000,000+ flips).
+• Standard Simulation: 
+  -Quick 50/50 coin toss modeling.
+• Weighted Probability Engine: 
+  -Simulate biased coins (e.g., 70% heads) to see how probability shifts over large datasets.
+• Data Export (CSV): 
+  -Automatically logs individual flip results to coin_results.csv for analysis in Excel or Google Sheets.
+• Double or Nothing Mini-Game: 
+  -A CLI-based betting game with a persistent balance tracker.
+• Performance Optimized: 
+  -Includes a PRINT_LIMIT to prevent console lag during massive simulations (e.g., 1,000,000+ flips).
 
+##Code:
+https://onlinegdb.com/gAU2Jkdoe
 
 ## How to Run on OnlineGDB
 1.	Ensure the language is set to Python 3.
