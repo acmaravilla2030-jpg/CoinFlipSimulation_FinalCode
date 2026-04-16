@@ -53,30 +53,36 @@ def run_simulation(number_of_flips, probability_heads=0.5, export=False):
         print("Results exported to:", filename)
 
 
+
 def game_mode():
     balance = 100
     print("\n--- Double or Nothing Game ---")
     print("Starting balance:", balance)
-
     while balance > 0:
-        bet = int(input("Enter bet amount (0 to exit): "))
-
+        try:
+            bet = int(input(f"Enter bet amount (0 to exit, Max {balance}): "))
+        except ValueError:
+            print("Please enter a valid number.")
+            continue
         if bet == 0:
             break
-
+        
+        if bet > balance:
+            print("You don't have enough money for that bet!")
+            continue
         result = flip_coin()
-
         print("Coin result:", result)
-
         if result == "Heads":
-            balance + bet
+            balance += bet  # Fixed: Use += to update the variable
+            print("You won!")
         else:
-            balance - bet
-
+            balance -= bet  # Fixed: Use -= to update the variable
+            print("You lost!")
         print("Current balance:", balance)
-
+    if balance <= 0:
+        print("Bust! You're out of money.")
+    
     print("Game over. Final balance:", balance)
-
 
 def get_int(prompt):
     return int(input(prompt))
