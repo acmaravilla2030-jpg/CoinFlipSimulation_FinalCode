@@ -18,7 +18,7 @@ A Python-based utility designed to model stochastic processes through simple Ber
   -Includes a PRINT_LIMIT to prevent console lag during massive simulations (e.g., 1,000,000+ flips).
 
 ##Code:
-https://onlinegdb.com/gAU2Jkdoe
+https://onlinegdb.com/P4_Ri2-2I
 
 ## How to Run on OnlineGDB
 1.	Ensure the language is set to Python 3.
